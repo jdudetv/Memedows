@@ -1,5 +1,7 @@
+![Memedows XD Logo in the style of Windows XP](https://github.com/jdudetv/Memedows/blob/main/assets/Logo.png?raw)
+
 # Memedows
-memedows re-write
+memedows is a project built for my stream http://twitch.tv/jdudetv. To run a bunch of interactive and automated elements in the broadcast for my viewers and myself.
 
 # Packages
     - Client: Electron app that communicates with OBS
