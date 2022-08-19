@@ -1,5 +1,5 @@
 <p align="center">
-   <img src="assets/logo.png" alt="Sceneify logo" width="400"/>
+   <img src="assets/Logo.png" alt="Memedows Logo" width="400"/>
 </p>
 
 <h1 align="center"></h1>
