@@ -36,6 +36,20 @@ const Eventitem = ({ unique, data, name, event }: FeedItem) => {
         </div>
       );
     case "subscription":
+      return (
+        <div className="font-bold text-2xl" key={unique}>
+          <span className="text-2xl">
+            <span className={NameColor}>{name}</span>
+            <span className={ActionColor}>
+              {data.gifted ? " Was gifted a sub!" : " Just Subscribed!"}
+            </span>
+          </span>
+          <br></br>
+          <span className="text-lg p-0 leading-tight block break-words w-11/12">
+            {data.message}
+          </span>
+        </div>
+      );
     case "resubscription":
     case "donation":
     case "ko-fi subscription":

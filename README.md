@@ -12,3 +12,7 @@ memedows is a project built for my [Twitch Stream](http://twitch.tv/jdudetv). To
     - Client: Electron app that communicates with OBS
     - Functions: All cloud based code & configurations
     - Dashboard: User-facing React app
+
+#
+
+Memedows uses [Sceneify](https://github.com/Brendonovich/sceneify) Is used to communicate with OBS.

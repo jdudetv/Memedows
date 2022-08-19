@@ -30,7 +30,7 @@ const Contents = ({ type }: ContentsProps) => {
             />
             <div className={"flex flex-col justify-center"}>
               <span className="overflow-auto">
-                {name}.{type === "Sounds" ? "mp3" : "mp4"}{" "}
+                {name}.{type === "sounds" ? "mp3" : "mp4"}{" "}
               </span>
               <span>{data.duration}s</span>
             </div>
