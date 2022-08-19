@@ -1,0 +1,37 @@
+{
+  "name": "functions",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "tsc",
+    "serve": "pnpm build && firebase emulators:start --only functions",
+    "shell": "pnpm build && firebase functions:shell",
+    "start": "pnpm shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "pack-types": "cd ../types && pnpm pack --pack-destination ../functions"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@memedows/types": "file:memedows-types-0.0.0.tgz",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/express": "^4.17.13",
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "copyfiles": "^2.4.1",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.4.2",
+    "firebase-functions": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.9",
+    "firebase-functions-test": "^0.2.0",
+    "typescript": "^4.4.3"
+  },
+  "private": true
+}

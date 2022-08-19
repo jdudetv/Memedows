@@ -1,0 +1,6 @@
+{
+  "functions": {
+    "source": ".",
+    "predeploy": ["pnpm i && pnpm build"]
+  }
+}

@@ -1,0 +1,110 @@
+[
+    {
+        "bounds": {
+            "alignment": 0,
+            "type": "OBS_BOUNDS_NONE",
+            "x": 0,
+            "y": 0
+        },
+        "crop": {
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "top": 0
+        },
+        "height": 1080,
+        "itemId": 898,
+        "locked": false,
+        "message-id": "33",
+        "name": "CaptureWindow",
+        "position": {
+            "alignment": 0,
+            "x": 960,
+            "y": 540
+        },
+        "rotation": 0,
+        "scale": {
+            "filter": "OBS_SCALE_DISABLE",
+            "x": 1,
+            "y": 1
+        },
+        "sourceHeight": 1080,
+        "sourceWidth": 1920,
+        "status": "ok",
+        "visible": true,
+        "width": 1920,
+        "messageId": "33"
+    },
+    {
+        "bounds": {
+            "alignment": 0,
+            "type": "OBS_BOUNDS_NONE",
+            "x": 0,
+            "y": 0
+        },
+        "crop": {
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "top": 0
+        },
+        "height": 1080,
+        "itemId": 899,
+        "locked": false,
+        "message-id": "34",
+        "name": "CameraWindow",
+        "position": {
+            "alignment": 0,
+            "x": 960,
+            "y": 540
+        },
+        "rotation": 0,
+        "scale": {
+            "filter": "OBS_SCALE_DISABLE",
+            "x": 1,
+            "y": 1
+        },
+        "sourceHeight": 1080,
+        "sourceWidth": 1920,
+        "status": "ok",
+        "visible": true,
+        "width": 1920,
+        "messageId": "34"
+    },
+    {
+        "bounds": {
+            "alignment": 0,
+            "type": "OBS_BOUNDS_NONE",
+            "x": 0,
+            "y": 0
+        },
+        "crop": {
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "top": 0
+        },
+        "height": 1080,
+        "itemId": 900,
+        "locked": false,
+        "message-id": "35",
+        "name": "ChatWindow",
+        "position": {
+            "alignment": 0,
+            "x": 1600,
+            "y": 540
+        },
+        "rotation": 0,
+        "scale": {
+            "filter": "OBS_SCALE_DISABLE",
+            "x": 1,
+            "y": 1
+        },
+        "sourceHeight": 1080,
+        "sourceWidth": 1920,
+        "status": "ok",
+        "visible": true,
+        "width": 1920,
+        "messageId": "35"
+    }
+]

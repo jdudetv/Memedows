@@ -1,0 +1,113 @@
+{
+  "name": "client",
+  "version": "0.0.0",
+  "main": "build/electron/main.js",
+  "private": true,
+  "workspaces": {
+    "nohoist": [
+      "electron-builder",
+      "electron",
+      "fluent-ffmpeg",
+      "fluent-ffmpeg/**",
+      "node-json-db",
+      "node-json-db/**",
+      "robotjs",
+      "robotjs/**"
+    ]
+  },
+  "scripts": {
+    "dev": "concurrently \"yarn dev:web\" \"yarn dev:electron\"",
+    "dev:web": "vite",
+    "dev:electron": "tsc -p electron && electron .",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "postinstall": "electron-rebuild"
+  },
+  "build": {
+    "extends": null,
+    "files": [
+      "build/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@datastructures-js/queue": "^4.1.3",
+    "@google-cloud/text-to-speech": "^3.3.1",
+    "@headlessui/react": "^1.4.1",
+    "@sceneify/animation": "^0.0.0-main-255d3add",
+    "@sceneify/core": "^0.0.0-main-255d3add",
+    "@sceneify/filters": "^0.0.0-main-255d3add",
+    "@sceneify/sources": "^0.0.0-main-255d3add",
+    "autoprefixer": "^10.2.3",
+    "axios": "^0.21.1",
+    "chokidar": "^3.5.1",
+    "clsx": "^1.1.1",
+    "deepai": "^1.0.17",
+    "electron": "12.2.1",
+    "electron-builder": "^22.10.5",
+    "electron-devtools-installer": "^3.2.0",
+    "electron-is-dev": "^2.0.0",
+    "elgato-stream-deck": "^4.1.0",
+    "eventemitter2": "^6.4.4",
+    "ffmpeg-static-electron": "^2.0.1",
+    "ffprobe-static-electron": "^2.0.0",
+    "firebase": "^9.0.1",
+    "fluent-ffmpeg": "^2.1.2",
+    "hsl-to-hex": "^1.0.0",
+    "image-size": "^1.0.0",
+    "mobx": "5.15.7",
+    "mobx-react-lite": "2.2.2",
+    "nanoid": "^3.1.23",
+    "node-gtts": "^2.0.2",
+    "node-json-db": "^1.3.0",
+    "p2": "^0.7.1",
+    "polly-tts": "^1.0.4",
+    "postcss": "^8.2.4",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-hook-form": "^7.15.0",
+    "react-promise-suspense": "^0.3.3",
+    "robotjs": "^0.6.0",
+    "socket.io-client": "2.3.1",
+    "speak-tts": "^2.0.8",
+    "tailwindcss": "^3.1.8",
+    "tmi.js": "^1.8.5",
+    "uuid": "^8.3.2",
+    "ws": "^8.2.2"
+  },
+  "devDependencies": {
+    "@types/events": "^3.0.0",
+    "@types/fluent-ffmpeg": "^2.1.17",
+    "@types/hsl-to-hex": "^1.0.0",
+    "@types/node": "^17.0.21",
+    "@types/p2": "^0.7.37",
+    "@types/react": "^17.0.24",
+    "@types/react-dom": "^17.0.0",
+    "@types/socket.io-client": "1.4.32",
+    "@types/tmi.js": "^1.7.2",
+    "@types/uuid": "^8.3.1",
+    "@types/ws": "^8.5.3",
+    "@vitejs/plugin-react-refresh": "^1.3.1",
+    "concurrently": "^6.1.0",
+    "electron-rebuild": "^3.2.3",
+    "typescript": "^4.6.2",
+    "vite": "^2.3.3",
+    "vite-plugin-commonjs-externals": "^0.1.1",
+    "vite-tsconfig-paths": "^3.3.13",
+    "wait-on": "^5.3.0"
+  }
+}

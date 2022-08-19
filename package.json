@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/@memedows/types"
+    ]
+  },
+  "scripts": {
+    "client": "pnpm --filter client",
+    "dashboard": "pnpm --filter dashboard",
+    "functions": "pnpm --filter functions",
+    "types": "pnpm --filter @memedows/types",
+    "prepare": "husky install",
+    "pnpm:devPreinstall": "pnpm run --filter functions pack-types"
+  },
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1",
+    "pretty-quick": "^3.1.3",
+    "typescript": "^4.6.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
