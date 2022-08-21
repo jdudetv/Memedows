@@ -4,11 +4,13 @@ import { usersStore } from "../stores/users";
 import { createHandler } from "./base";
 import fs from "fs";
 import { asset, getRandomInt } from "~/utils";
-import { FakeEvent } from "../stores";
+import { FakeEvent, feedStore } from "../stores";
 import { off } from "process";
 import { GenericSound, TTSFunction } from "~/obs/redemptions";
 import { assert } from "console";
 import { EventFeed } from "./eventFeed";
+import WebSocket from "ws";
+import { PUBSUB } from "../services";
 
 export const SUBSCRIBE_XP = {
   prime: 500,
@@ -17,10 +19,16 @@ export const SUBSCRIBE_XP = {
   3: 2500,
 };
 
+let Giftedflag = 0;
+
 createHandler({
   event: "subscribe",
   handler: async (data) => {
-    EventFeed("Subscription", data.userName, data);
+    console.log(data);
+    if (!data.gifted) EventFeed("Subscription", data.userName, data);
+    if (data.gifted && Giftedflag > 0) {
+      EventFeed("giftedReceive", data.userName, data);
+    }
     FakeEvent(
       "subscriptionlogic",
       data.userName,
@@ -58,6 +66,8 @@ const resubscribeState = observable({
 createHandler({
   event: "subscriptionMessage",
   handler: async (data) => {
+    if (data.streak === 1) return;
+    console.log(data);
     EventFeed("Resubscription", data.userName, data);
     FakeEvent(
       "subscriptionlogic",
@@ -95,7 +105,9 @@ createHandler({
   event: "giftSubscribe",
   handler: async (data) => {
     console.log(data);
+    Giftedflag = data.total;
     resubscribeState.latestResub = data.userName;
+    EventFeed("giftsubscribe", data.userName, data);
     console.log("gifted sub triggered");
     await usersStore.grantXp(data.userId, SUBSCRIBE_XP[data.tier] / 2);
   },

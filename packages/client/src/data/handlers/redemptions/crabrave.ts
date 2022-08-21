@@ -11,13 +11,18 @@ import { v4 as uuidv4 } from "uuid";
 import { asset, wait } from "~/utils";
 import { DynamicMask, PixelateShader } from "~/obs/filters";
 import { animate } from "@sceneify/animation";
-import { registerPhysicsItem, unregisterPhysicsItem } from "~/obs/physics";
+import {
+  registerPhysicsItem,
+  unregisterPhysicsItem,
+  world,
+} from "~/obs/physics";
 import { ClientRequest } from "electron";
 import { createVideoWindow, GenericSound } from "~/obs/redemptions";
 
 createRedemptionHandler({
   event: "crabrave",
   handler: async (data) => {
+    world.gravity = [0, 0];
     GenericSound("CRABRAVEAUDIO", asset`sounds/crabrave.mp3`, -10, true, 0);
     setTimeout(async () => {
       for (let i = 0; i < 20; i++) {
@@ -56,6 +61,7 @@ createRedemptionHandler({
 
     setTimeout(() => {
       mainScene.item("CrabRave").setEnabled(true);
+      world.gravity = [0, 9800];
     }, 14800);
 
     setTimeout(async () => {
@@ -64,6 +70,7 @@ createRedemptionHandler({
 
     setTimeout(() => {
       redemptionEnded("crabrave");
+      world.gravity = [0, 980];
     }, 35000);
   },
 });

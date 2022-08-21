@@ -1,9 +1,9 @@
 import { GenericSound, TTSFunction } from "~/obs/redemptions";
-import { asset } from "~/utils";
+import { asset, HEXtoOBS } from "~/utils";
 import { localDB } from "../jsondb";
 import { TMIClient } from "./emotes";
 import { v4 as uuidv4 } from "uuid";
-import { mainScene, pixelScene, rotation } from "~/obs/Main";
+import { mainScene, pixelScene } from "~/obs/Main";
 import { toggleStartMenu } from "~/obs/startMenu";
 import { TTSingChat } from "../handlers/redemptions/ALLTTS";
 import { doc, getDoc, increment, updateDoc } from "firebase/firestore";
@@ -50,6 +50,7 @@ export function RaidTog(num: number) {
 let waterCooldown = 0;
 
 TMIClient.on("message", async (channel, tags, message, self) => {
+  localDB.push(`/store/chatcolors/${tags.username}`, tags.color);
   if (channel === "#ocefam") {
     if (message === "!start") {
       if (!mainScene.item("StartMenu").enabled) toggleStartMenu();

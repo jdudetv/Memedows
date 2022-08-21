@@ -25,10 +25,7 @@ createRedemptionHandler({
       "pixelate",
     ];
 
-    await redemptionsStore.toggleRedemption("FreeTierVote", false);
-    let refundData = localDB.getData("store/refund/variables");
-    refundData.FreeTierTimer = 3600;
-    localDB.push("store/refund/variables", refundData);
+    // await redemptionsStore.toggleRedemption("FreeTierVote", false);
     let Options = [];
     for (let i = 0; i < 5; i++) {
       let number = Math.floor(Math.random() * Redemptions.length);

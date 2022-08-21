@@ -22,16 +22,18 @@ createRedemptionHandler({
   handler: async (data) => {
     GenericSound("BreakingNewsSoundIntro", asset`sounds/NewsIntro.mp3`, -15);
 
-    // let SubData = await checkSubbed(data.userId);
-
-    // let subbedProfilePic = await GetProfilePic(data.userId);
-
-    // console.log(subbedProfilePic);
+    let SubData = await checkSubbed(data.userId);
+    let subbedProfilePic;
+    if (SubData.data.length > 0)
+      subbedProfilePic = await GetProfilePic(data.userId);
 
     const image = new BrowserSource({
       name: "RandomPerson",
       settings: {
-        url: "https://thispersondoesnotexist.com/image",
+        url:
+          SubData.data.length > 0
+            ? subbedProfilePic.data[0].profile_image_url
+            : "https://thispersondoesnotexist.com/image",
         width: 300,
         height: 300,
       },
@@ -295,6 +297,8 @@ createRedemptionHandler({
       source: TheNews,
       enabled: false,
     });
+
+    NewsMain.setEnabled(false);
 
     let NewIntro = await mainScene.createItem("NewsIntro", {
       source: new MediaSource({

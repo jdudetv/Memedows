@@ -82,3 +82,13 @@ export function getTime() {
     minute: "numeric",
   });
 }
+
+export function HEXtoOBS(hex: string) {
+  if (hex.startsWith("#")) {
+    hex = hex.substring(1);
+  }
+  let letters = hex.split("");
+  let output =
+    letters[4] + letters[5] + letters[2] + letters[3] + letters[0] + letters[1];
+  return output;
+}

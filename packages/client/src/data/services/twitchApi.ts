@@ -2,6 +2,7 @@ import axios from "axios";
 import { doc, onSnapshot } from "firebase/firestore";
 
 import { broadcaster_id } from "~/constants/twitch";
+import { costToHex } from "~/routes/redemptions";
 import { db } from "./firebase";
 
 const helixAPI = axios.create({
@@ -120,6 +121,7 @@ export const GetProfilePic = async (id: string) => {
       broadcaster_id,
     },
   });
+  return data;
 };
 
 export const GetID = async (username: string) => {
@@ -174,6 +176,7 @@ export const refundRedemption = async (
 export const createRedemption = async (
   redemptionData: ProvisionalRedemption
 ): Promise<Redemption> => {
+  redemptionData.background_color = costToHex(redemptionData.cost);
   const { data } = await helixAPI.post(
     `channel_points/custom_rewards`,
     fixRedemptionForHelix(redemptionData),
@@ -202,6 +205,7 @@ export const updateRedemption = async (
   redemptionData: ProvisionalRedemption,
   id?: string
 ): Promise<Redemption> => {
+  redemptionData.background_color = costToHex(redemptionData.cost);
   const { data } = await helixAPI.patch(
     `channel_points/custom_rewards`,
     fixRedemptionForHelix(redemptionData),

@@ -21,7 +21,7 @@ musicWatcher.on("change", async (p) => {
   }
 });
 
-export function CurrSong(OR: boolean) {
+export function CurrSong(OR?: boolean) {
   if (timer == 0 || OR == true) {
     timer = 15;
     if (mainScene.item("MusicWindow").minimised) {

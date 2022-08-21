@@ -8,6 +8,7 @@ import "./streamdeck";
 import { setupObs } from "~/obs/Main";
 import { eventsStore } from "../stores";
 import { initPixels } from "./pixels";
+export * from "./pubsub";
 // import { initalizeDiscord } from "./discord";
 
 export async function initializeServices() {

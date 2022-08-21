@@ -7,7 +7,7 @@ import {
   hypeTrainProgress,
 } from "~/obs/hypeTrain";
 import { world } from "~/obs/physics";
-import { eventsStore, FakeEvent, newUser } from "../stores";
+import { eventsStore, FakeEvent, feedStore, newUser } from "../stores";
 import { createVideoWindow } from "~/obs/redemptions";
 import Window, { WindowItem } from "~/obs/Window";
 import { Alignment, Scene } from "@sceneify/core";
@@ -22,6 +22,7 @@ import { CreatePoll } from "../services/twitchApi";
 import {
   amountAlerts,
   DonationRefundHandling,
+  EventFeed,
   HypeTrain,
   SecretBit,
   SubAlert,
@@ -145,10 +146,12 @@ streamdeckEmitter.on("keyDown:startReset", async () => {
 });
 
 streamdeckEmitter.on("keyDown:world", async () => {
+  // EventFeed("giftsubscribe", "jdudetv", {total: 1});
   // raidFunc({viewers: 10, fromId: "", fromName: ""});
-  // FakeEvent("shoot","","100");
+  FakeEvent("dvd", "", "");
   // createVideoWindow(mainScene, "OGCUM");
-  //FakeEvent("subscriptionlogic", "username", JSON.stringify({tier: 1, cumulative: 10}));
+  // console.log(feedStore.events.find(thing => "generalbot395" == thing.name.toLowerCase())?.data.receipients.length);
+  // FakeEvent("subscriptionlogic", "queereokerules", JSON.stringify({tier: 1, cumulative: 1}));
   // console.log(
   //   await obs.call("GetSceneItemTransform", {
   //     sceneName: "MainWrapper",

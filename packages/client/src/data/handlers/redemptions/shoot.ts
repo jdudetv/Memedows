@@ -50,7 +50,7 @@ createRedemptionHandler({
       user = 0;
     }
     if (user > Date.now() - 300000) {
-      refundRedemption(data.id, data.reward.id);
+      if (!data.fake) refundRedemption(data.id, data.reward.id);
       redemptionEnded("shoot");
       return;
     } else {

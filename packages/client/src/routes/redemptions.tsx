@@ -14,7 +14,7 @@ import TextArea from "~/components/forms/TextArea";
 import Toggle from "~/components/ui/Toggle";
 import { localDB } from "~/data/jsondb";
 
-function costToHex(number: number) {
+export function costToHex(number: number) {
   let hue = Math.pow(number / 10000, 0.165) * 360;
   return hsl(361 - (hue % 360), 100, 50).toUpperCase();
 }

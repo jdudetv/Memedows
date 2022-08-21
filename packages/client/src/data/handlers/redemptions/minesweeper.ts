@@ -95,15 +95,29 @@ createRedemptionHandler({
 
     let timeout = 120;
 
-    setTimeout(() => {
+    const countdown = setInterval(() => {
       if (timeout > 0) {
         timeout--;
       } else {
+        GenericVideo(
+          "MSExplosion",
+          mainScene,
+          asset`Mine/Explode.mov`,
+          false,
+          MSINMAIN.transform.positionX,
+          MSINMAIN.transform.positionY - 200,
+          0.8
+        );
         MSINMAIN.delete();
         TMIClient.removeListener("message", listener);
         redemptionEnded("minesweeper");
+        clear();
       }
     }, 1000);
+
+    const clear = () => {
+      clearInterval(countdown);
+    };
 
     const listener = async (
       channel: any,

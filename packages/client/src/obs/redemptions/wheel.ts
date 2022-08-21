@@ -39,7 +39,7 @@ export async function randomWheelItems(data: any) {
     { name: "Free Dab", chance: 1000 },
     { name: "1000 xp", chance: 1000 },
     { name: "Timeout someone else", chance: 1000 },
-    { name: "FIRESALE", chance: 5000 },
+    { name: "FIRESALE", chance: 1000 },
     { name: "Yeet", chance: 10000 },
     // { name: "OG CumZone", chance: 5000 },
     { name: "NUKE", chance: 1 },
@@ -277,7 +277,6 @@ export async function WheelSpin(
           "ayaya",
           "wot",
           "cowboy",
-          "",
         ];
         let redemptionName =
           redemptionNames[Math.round(Math.random() * redemptionNames.length)];

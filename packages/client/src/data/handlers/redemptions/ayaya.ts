@@ -58,7 +58,7 @@ createRedemptionHandler({
     );
 
     let Data = convert(asset`ayaya/AYAYA.json`, "cam", 0.5, 0, -70, 0);
-    await wait(80);
+    await wait(400);
     await animate({
       subjects: {
         Main: MirrorAdded,

@@ -56,7 +56,7 @@ createRedemptionHandler({
     }
 
     await wait(1100);
-    localDB.push("store/hueShift", data.input);
+    localDB.push("store/hueShift", parseInt(data.input) % 360);
     redemptionEnded("windowstheme");
   },
 });

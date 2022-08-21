@@ -28,10 +28,16 @@ export class FeedStore extends BaseStore {
   async handleEvent(event: string, name: string, data: object) {
     let unique = v4();
     let payload = { event, name, data, unique };
-    this.events.push(payload as FeedItem);
+    this.events.unshift(payload as FeedItem);
     while (this.events.length > 100) {
-      this.events.shift();
+      this.events.pop();
     }
+  }
+
+  removeItem(unique: string) {
+    let deleteItem = this.events.find((thing) => unique == thing.unique);
+    let position = this.events.indexOf(deleteItem!);
+    this.events.splice(position, 1);
   }
 
   initialize() {

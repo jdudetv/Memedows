@@ -48,3 +48,6 @@ import "./bitsMaze";
 import "./bitsPlinko";
 import "./shoot";
 import "./NewSub";
+import "./customredemption";
+import "./dvd";
+import "./flashbang";

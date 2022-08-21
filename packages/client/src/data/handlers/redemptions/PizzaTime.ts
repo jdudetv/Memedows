@@ -26,7 +26,7 @@ createRedemptionHandler({
         scaleY: 0.8,
         enabled: false,
       });
-
+      Pizza.setEnabled(false);
       setTimeout(() => {
         Pizza.setEnabled(true);
 
@@ -59,7 +59,7 @@ createRedemptionHandler({
         scaleY: 0.6,
         enabled: false,
       });
-
+      Pizza.setEnabled(false);
       setTimeout(() => {
         Pizza.setEnabled(true);
 

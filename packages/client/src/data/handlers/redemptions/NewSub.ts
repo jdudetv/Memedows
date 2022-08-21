@@ -1,8 +1,9 @@
 import { wait } from "@sceneify/animation";
 import { Alignment } from "@sceneify/core";
 import { GDIPlusTextSource } from "@sceneify/sources";
+import { localDB } from "~/data/jsondb";
 import { FakeEvent } from "~/data/stores";
-import { mainScene } from "~/obs/Main";
+import { mainScene, MainWrapper } from "~/obs/Main";
 import {
   getBody,
   registerPhysicsItem,
@@ -10,7 +11,7 @@ import {
   updateBoundsForItem,
 } from "~/obs/physics";
 import { GenericSound, TTSFunction } from "~/obs/redemptions";
-import { asset } from "~/utils";
+import { asset, HEXtoOBS } from "~/utils";
 import { createRedemptionHandler, redemptionEnded } from "./base";
 
 createRedemptionHandler({
@@ -28,6 +29,39 @@ interface DataStructure {
 }
 
 async function SubAlert(name: string, data: DataStructure) {
+  let hex = "FFFFFF";
+  try {
+    hex = localDB.getData(`/store/chatcolors/${name.toLowerCase()}`);
+    if (hex === null) hex = "FFFFFF";
+  } catch (error) {
+    console.log("name not found");
+    console.log(error);
+  }
+
+  let color = Number("0xFF" + HEXtoOBS(hex));
+
+  let textscreen = await MainWrapper.createItem(name, {
+    source: new GDIPlusTextSource({
+      name: name + " big",
+      settings: {
+        text:
+          name.toUpperCase() +
+          (data.cumulative > 1
+            ? " x " + data.cumulative + " Months"
+            : " Subscribed for the first time"),
+        color: color,
+        font: {
+          size: 100,
+          face: "Comic Sans MS",
+        },
+        align: "center",
+        valign: "center",
+      } as any,
+    }),
+    positionX: 960,
+    positionY: 540,
+    alignment: Alignment.Center,
+  });
   let delay = 300;
   if (data.cumulative >= 0) {
     for (let x = 0; x < data.cumulative; x++) {
@@ -37,14 +71,15 @@ async function SubAlert(name: string, data: DataStructure) {
     }
     setTimeout(() => {
       redemptionEnded("subscriptionlogic");
+      textscreen.remove();
     }, data.cumulative * delay + 5000);
   }
-  await wait(data.cumulative * delay);
   await mainScene.createItem(name, {
     source: new GDIPlusTextSource({
       name,
       settings: {
         text: name.toUpperCase(),
+        color: color,
         font: {
           size: 100,
           face: "Comic Sans MS",
@@ -57,11 +92,14 @@ async function SubAlert(name: string, data: DataStructure) {
     positionY: -200,
     alignment: Alignment.Center,
   });
+  await wait(data.cumulative * delay);
+
   let Name = await mainScene.createItem(name, {
     source: new GDIPlusTextSource({
       name,
       settings: {
         text: name.toUpperCase(),
+        color: color,
         font: {
           size: 100,
           face: "Comic Sans MS",
@@ -75,6 +113,7 @@ async function SubAlert(name: string, data: DataStructure) {
     positionY: -200,
     alignment: Alignment.Center,
   });
+  console.log(Name);
   registerPhysicsItem(Name, {
     getBounds: () => ({
       height: Name.transform.sourceHeight - 40,
@@ -87,6 +126,7 @@ async function SubAlert(name: string, data: DataStructure) {
   });
   setTimeout(() => {
     unregisterPhysicsItem(Name);
+    Name.remove();
   }, 30000 * data.cumulative);
 
   //IF ELSE TREE BELOW FOR EACH MONTH SETUP
