@@ -1,0 +1,52 @@
+datasource db {
+  url      = env("DATABASE_URL")
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  twitchId     String              @id
+  displayName  String
+  xp           Int                 @default(0)
+  votes        Int                 @default(0)
+  timeouts     Int                 @default(0)
+  subscription TwitchSubscription?
+}
+
+enum TwitchSubscription {
+  Tier1
+  Tier2
+  Tier3
+  Prime
+}
+
+model Media {
+  id          String    @id
+  duration    Float
+  redemptions Int       @default(0)
+  type        MediaType
+  name        String
+}
+
+enum MediaType {
+  Audio
+  Video
+}
+
+model JoshStats {
+  id Int @id @default(autoincrement())
+
+  pushupsCompleted Int @default(0)
+  pushupsTotal     Int @default(0)
+
+  squatsCompleted Int @default(0)
+  squatsTotal     Int @default(0)
+}
+
+model SecretBit {
+  bit   Int     @id
+  state Boolean
+}

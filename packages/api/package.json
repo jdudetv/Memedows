@@ -1,0 +1,24 @@
+{
+  "name": "@memedows/api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^4.2.1",
+    "@supabase/supabase-js": "^1.35.6",
+    "@trpc/client": "^9.27.2",
+    "@trpc/server": "^9.27.2",
+    "jsonwebtoken": "^8.5.1",
+    "prisma": "^4.2.1",
+    "zod": "^3.18.0"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.9"
+  }
+}
