@@ -11,6 +11,8 @@
   "scripts": {
     "client": "pnpm --filter client",
     "dashboard": "pnpm --filter dashboard",
+    "web": "pnpm --filter @memedows/web",
+    "api": "pnpm --filter @memedows/api",
     "functions": "pnpm --filter functions",
     "types": "pnpm --filter @memedows/types",
     "prepare": "husky install",
