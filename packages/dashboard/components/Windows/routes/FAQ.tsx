@@ -10,7 +10,7 @@ let FAQData = [
     title: "What is memedows?",
     toggled: false,
     description:
-      'Memedows XD is the "operating" system that runs my entire stream. Its built on NodeJS and React. It has been built with the help of Brendonovich and LCLC98',
+      "Memedows XD is the \"operating\" system that runs my entire stream. It's built on NodeJS and React. It has been built with the help of Brendonovich and LCLC98",
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ let FAQData = [
     title: "I got timed out for typing 'yo'?",
     toggled: false,
     description:
-      "There is a random yo counter that counts everytime yo has been typed in chat. BUT there is a randomly assigned cooldown on the command and if its on cooldown you get timed out.",
+      "There is a random yo counter that counts every time yo has been typed in chat. BUT there is a randomly assigned cooldown on the command and if it's on cooldown you get timed out.",
   },
   {
     id: 4,
@@ -87,7 +87,7 @@ let FAQData = [
     title: "Why do redemption prices change?",
     toggled: false,
     description:
-      "We have built in spame prevention on redemptions so the more they are redeemed in a short time the higher the price goes. Also they are discounted during a hype train.",
+      "We have built in spam prevention on redemptions so the more they are redeemed in a short time the higher the price goes. Also they are discounted during a hype train.",
   },
   {
     id: 13,
@@ -122,7 +122,7 @@ let FAQData = [
     title: "What is H. Court?",
     toggled: false,
     description:
-      "H. Court stands for horny court (twitch wouldnt let me call it that) You enter in another users username. And it begins a chat poll to decide whether they get timed out or not. If the poll ties, you both get timed out. If its voted no, you get timed out.",
+      "H. Court stands for horny court (Twitch wouldn't let me call it that) You enter another user's username. And it begins a chat poll to decide whether they get timed out or not. If the poll ties, you both get timed out. If it's voted no, you get timed out.",
   },
   {
     id: 18,
