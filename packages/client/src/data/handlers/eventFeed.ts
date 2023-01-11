@@ -8,8 +8,10 @@ export function EventFeed(event: string, name: string, data: any) {
       (thing) => name.toLowerCase() == thing.name.toLowerCase()
     );
     console.log(user);
-    if (user?.data.receipients.length != data.total)
+    if (user?.data.receipients.length != data.total) {
       data.receipients.push(data);
+    }
+    return;
   }
   if (event === "giftsubscribe") {
     data.receipients = [];

@@ -151,6 +151,28 @@ export const checkSubbed = async (id: string) => {
   return data;
 };
 
+export const completeRedemption = async (
+  id: string,
+  reward_id: string
+): Promise<Redemption> => {
+  const { data } = await helixAPI.patch(
+    `channel_points/custom_rewards/redemptions`,
+    {},
+    {
+      params: {
+        status: "FULFILLED",
+        id,
+        reward_id,
+        broadcaster_id,
+      },
+    }
+  );
+
+  return {
+    ...fixRedemptionFromHelix(data.data[0]),
+  } as Redemption;
+};
+
 export const refundRedemption = async (
   id: string,
   reward_id: string

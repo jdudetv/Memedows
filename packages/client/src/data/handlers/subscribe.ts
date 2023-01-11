@@ -29,13 +29,12 @@ createHandler({
     if (data.gifted && Giftedflag > 0) {
       EventFeed("giftedReceive", data.userName, data);
     }
-    FakeEvent(
-      "subscriptionlogic",
-      data.userName,
-      JSON.stringify({ tier: data.tier })
-    );
     if (data.gifted === true) {
-      console.log(data);
+      FakeEvent(
+        "subscriptionlogic",
+        data.userName,
+        JSON.stringify({ tier: data.tier })
+      );
       if (data.tier == 1)
         FakeEvent("wheelofmemefortune", data.userName, "", data.userId);
       FakeEvent("shoot", "", "500");

@@ -56,6 +56,7 @@
     "axios": "^0.21.1",
     "chokidar": "^3.5.1",
     "clsx": "^1.1.1",
+    "color-convert": "^2.0.1",
     "deepai": "^1.0.17",
     "electron": "12.2.1",
     "electron-builder": "^22.10.5",
@@ -86,10 +87,12 @@
     "speak-tts": "^2.0.8",
     "tailwindcss": "^3.1.8",
     "tmi.js": "^1.8.5",
+    "tuyapi": "^7.4.0",
     "uuid": "^8.3.2",
     "ws": "^8.2.2"
   },
   "devDependencies": {
+    "@types/color-convert": "^2.0.0",
     "@types/events": "^3.0.0",
     "@types/fluent-ffmpeg": "^2.1.17",
     "@types/hsl-to-hex": "^1.0.0",

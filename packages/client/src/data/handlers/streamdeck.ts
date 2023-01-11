@@ -31,6 +31,7 @@ import { World } from "p2";
 import { raidFunc } from "./raid";
 import { doc, increment, updateDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
+import { getMousePos, getPixelColor } from "robotjs";
 
 streamdeckEmitter.removeAllListeners();
 
@@ -148,7 +149,9 @@ streamdeckEmitter.on("keyDown:startReset", async () => {
 streamdeckEmitter.on("keyDown:world", async () => {
   // EventFeed("giftsubscribe", "jdudetv", {total: 1});
   // raidFunc({viewers: 10, fromId: "", fromName: ""});
-  FakeEvent("dvd", "", "");
+  // FakeEvent("dvd", "", "");
+  let color = getPixelColor(2570, 540);
+  console.log(color);
   // createVideoWindow(mainScene, "OGCUM");
   // console.log(feedStore.events.find(thing => "generalbot395" == thing.name.toLowerCase())?.data.receipients.length);
   // FakeEvent("subscriptionlogic", "queereokerules", JSON.stringify({tier: 1, cumulative: 1}));
@@ -162,4 +165,12 @@ streamdeckEmitter.on("keyDown:world", async () => {
 
 streamdeckEmitter.on("keyDown:startmenu", async () => {
   toggleStartMenu();
+});
+
+streamdeckEmitter.on("keyDown:saxaphone", async () => {
+  FakeEvent("recordscratch");
+});
+
+streamdeckEmitter.on("keyDown:calculating", async () => {
+  FakeEvent("calculating");
 });

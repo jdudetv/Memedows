@@ -71,8 +71,73 @@ import fs from "fs";
 import { Visualiser } from "./sources/visualiser";
 import { GenericSound } from "./redemptions";
 import { usersStore } from "~/data/stores";
+import TuyAPI from "tuyapi";
+import hslToHex from "hsl-to-hex";
+import { hsv, hsl, hex } from "color-convert";
+import { HEXtoLED, HSVtoLED } from "./physics/utils";
 
 export const obs = new OBS();
+
+// const device = new TuyAPI({
+//   id: "bfe40f5f188263d0c8tuvf",
+//   key: "b771427902cf03f0"
+// });
+
+// let stateHasChanged = false;
+
+// device.find().then(() => {
+//   device.connect();
+// })
+
+// device.on('connected', () => {
+//   console.log('Connected to device!');
+// });
+
+// device.on('disconnected', () => {
+//   console.log('Disconnected from device.');
+// });
+
+// device.on('error', error => {
+//   console.log('Error!', error);
+// });
+
+// let flashes = 0;
+// let toggle = 0;
+
+// device.on("dp-refresh", async (data) =>{
+//   await wait(500);
+//   console.log(data);
+//   await wait(1000);
+//   // device.set({dps: 21, set: "colour"});
+//   // if(flashes < 6) flash();
+// });
+
+// // function flash (){
+// //     if(toggle == 1){
+// //       device.set({dps: 24, set: HEXtoLED("#FF0000")});
+// //       toggle = 0;
+// //     } else {
+// //       device.set({dps: 24, set: HEXtoLED("#0000FF")});
+// //       toggle = 1;
+// //     }
+// //     flashes++;
+// // }
+
+// device.on('data', data => {
+//   console.log('Data from device:', data);
+
+//   // Set default property to opposite
+//   if (!stateHasChanged) {
+//     // device.set({dps: 24, set: HEXtoLED("#FF0000")});
+//     device.set({dps: 21, set: "scene"});
+
+//     // Otherwise we'll be stuck in an endless
+//     // loop of toggling the state.
+//     stateHasChanged = true;
+//   }
+// });
+
+// // Disconnect after 10 seconds
 
 let HealthText = localDB.getData("/store/cam/health");
 console.log(HealthText);
@@ -94,21 +159,21 @@ export const pixelScene = new Scene({
 export const MusicPlayerScene = new Scene({
   name: "MusicPlayerScene",
   items: {
-    playtime: {
-      source: new ProgressBar({
-        name: "playtime",
-        settings: {
-          use_bg: true,
-          bg: 4281084972,
-          fg: 4294949632,
-          cx: 495,
-          cy: 50,
-        },
-      }),
-      positionX: 960,
-      positionY: 625,
-      alignment: Alignment.Center,
-    },
+    // playtime: {
+    //   source: new ProgressBar({
+    //     name: "playtime",
+    //     settings: {
+    //       use_bg: true,
+    //       bg: 4281084972,
+    //       fg: 4294949632,
+    //       cx: 495,
+    //       cy: 50,
+    //     },
+    //   }),
+    //   positionX: 960,
+    //   positionY: 625,
+    //   alignment: Alignment.Center,
+    // },
     MusicBackground: {
       source: new ImageSource({
         name: "MusicBackground",
@@ -162,52 +227,52 @@ export const MusicPlayerScene = new Scene({
       scaleX: 0.272,
       scaleY: 0.272,
     },
-    VisualiserNowPlaying: {
-      source: new Visualiser({
-        name: "VisualiserNowPlaying",
-        settings: {
-          audio_source: "deskAudio",
-          bar_space: 0,
-          color: 4294967295,
-          corner_points: 5,
-          corner_radius: 0.5,
-          detail: 135,
-          falloff: 0.95,
-          filter_mode: 2,
-          filter_strength: 1.3,
-          gravity: 0.73,
-          height: 690,
-          log_freq_scale: true,
-          log_freq_scale_hpf_curve: 100,
-          log_freq_scale_quality: 0,
-          log_freq_scale_start: 67.4,
-          log_freq_scale_use_hpf: true,
-          round_corners: false,
-          scale_boost: 0.001,
-          scale_size: 0.822,
-          sgs_passes: 1,
-          sgs_points: 2,
-          stereo: false,
-          use_auto_scale: true,
-          width: 6,
-          wire_mode: 0,
-          wire_thickness: 5,
-        },
-        filters: {
-          RAINBOW: new RainbowShader({
-            name: "RAINBOW",
-            settings: {
-              Apply_To_Image: true,
-            },
-          }),
-        },
-      }),
-      positionX: 870,
-      positionY: 471,
-      alignment: Alignment.Center,
-      scaleX: 0.393,
-      scaleY: 0.393,
-    },
+    // VisualiserNowPlaying: {
+    //   source: new Visualiser({
+    //     name: "VisualiserNowPlaying",
+    //     settings: {
+    //       audio_source: "deskAudio",
+    //       bar_space: 0,
+    //       color: 4294967295,
+    //       corner_points: 5,
+    //       corner_radius: 0.5,
+    //       detail: 135,
+    //       falloff: 0.95,
+    //       filter_mode: 2,
+    //       filter_strength: 1.3,
+    //       gravity: 0.73,
+    //       height: 690,
+    //       log_freq_scale: true,
+    //       log_freq_scale_hpf_curve: 100,
+    //       log_freq_scale_quality: 0,
+    //       log_freq_scale_start: 67.4,
+    //       log_freq_scale_use_hpf: true,
+    //       round_corners: false,
+    //       scale_boost: 0.001,
+    //       scale_size: 0.822,
+    //       sgs_passes: 1,
+    //       sgs_points: 2,
+    //       stereo: false,
+    //       use_auto_scale: true,
+    //       width: 6,
+    //       wire_mode: 0,
+    //       wire_thickness: 5,
+    //     },
+    //     filters: {
+    //       RAINBOW: new RainbowShader({
+    //         name: "RAINBOW",
+    //         settings: {
+    //           Apply_To_Image: true,
+    //         },
+    //       }),
+    //     },
+    //   }),
+    //   positionX: 870,
+    //   positionY: 471,
+    //   alignment: Alignment.Center,
+    //   scaleX: 0.393,
+    //   scaleY: 0.393,
+    // },
   },
 });
 
@@ -1304,8 +1369,11 @@ export const MainWrapper = new Scene({
 });
 
 export async function setupObs() {
+  console.log("is this running?");
   setupPhysics();
+  console.log("is this running?2");
   setupBits();
+  console.log("is this running?3");
   await obs.connect("ws:localhost:4455");
 
   // necessary so that icons have transforms updated before being used
@@ -1376,17 +1444,17 @@ export async function setupObs() {
       res_type: 1,
     });
 
-  let GreenScreenCamInfo = (
-    await obs.call("GetInputPropertiesListPropertyItems", {
-      inputName: greenScreenCameraScene.item("camera").source.name,
-      propertyName: "video_device_id",
-    })
-  ).propertyItems.find((data) => data.itemName.includes("DUO - 2"));
+  // let GreenScreenCamInfo = (
+  //   await obs.call("GetInputPropertiesListPropertyItems", {
+  //     inputName: greenScreenCameraScene.item("camera").source.name,
+  //     propertyName: "video_device_id",
+  //   })
+  // ).propertyItems.find((data) => data.itemName.includes("DUO - 2"));
 
-  if (GreenScreenCamInfo)
-    await greenScreenCameraScene
-      .item("camera")
-      .source.setSettings({ video_device_id: GreenScreenCamInfo.itemValue });
+  // if (GreenScreenCamInfo)
+  //   await greenScreenCameraScene
+  //     .item("camera")
+  //     .source.setSettings({ video_device_id: GreenScreenCamInfo.itemValue });
 
   let displayInfo = await obs.call("GetInputPropertiesListPropertyItems", {
     inputName: mainScene.item("desktopCapture").source.name,

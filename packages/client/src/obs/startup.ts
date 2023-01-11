@@ -35,7 +35,7 @@ export async function startup() {
   MonitorScene.item("Screen").setEnabled(true);
   await wait(1000); // delay added so bios shows first
   MonitorScene.item("Loading").setEnabled(true);
-  MonitorScene.item("ScreenVisual").setEnabled(true);
+  MonitorScene.item("Screen").setEnabled(true);
 
   MonitorScene.item("ChatStarting").setEnabled(false);
 

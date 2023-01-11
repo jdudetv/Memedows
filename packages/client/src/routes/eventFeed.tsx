@@ -59,7 +59,7 @@ const Eventitem = ({ unique, data, name, event }: FeedItem) => {
           <br></br>
           <span className="text-lg p-0 leading-tight block break-words w-11/12">
             {[...data.receipients].map((item) => (
-              <div key={item} className="text-2xl pl-4 text-sky-200">
+              <div key={item.recipient} className="text-2xl pl-4 text-sky-200">
                 {"● " + item.recipient}
                 <br></br>
               </div>
@@ -118,7 +118,23 @@ const Eventitem = ({ unique, data, name, event }: FeedItem) => {
     case "donation":
     case "ko-fi subscription":
     case "hypetrainstart":
+      return (
+        <div className="font-bold text-2xl" key={unique}>
+          <span className="text-2xl">
+            <span className={NameColor}>Hype Train</span>
+            <span className={ActionColor}>{" Begun"}</span>
+          </span>
+        </div>
+      );
     case "hypetrainend":
+      return (
+        <div className="font-bold text-2xl" key={unique}>
+          <span className="text-2xl">
+            <span className={NameColor}>Hype Train</span>
+            <span className={ActionColor}>{" Ended"}</span>
+          </span>
+        </div>
+      );
   }
 
   return (
@@ -143,7 +159,7 @@ const eventFeedComponent = () => {
     <div className="flex flex-col w-full divide-solid divide-y-2 divide-opacity-100 divide-slate-900">
       {[...feedStore.events].map((event) => (
         <div
-          key={event.unique}
+          key={event.unique + "parent"}
           className="odd:bg-slate-600 even:bg-slate-700 p-2 break-words"
         >
           <Eventitem

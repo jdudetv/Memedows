@@ -63,17 +63,7 @@ async function SubAlert(name: string, data: DataStructure) {
     alignment: Alignment.Center,
   });
   let delay = 300;
-  if (data.cumulative >= 0) {
-    for (let x = 0; x < data.cumulative; x++) {
-      setTimeout(() => {
-        FakeEvent("explosion");
-      }, x * delay);
-    }
-    setTimeout(() => {
-      redemptionEnded("subscriptionlogic");
-      textscreen.remove();
-    }, data.cumulative * delay + 5000);
-  }
+
   await mainScene.createItem(name, {
     source: new GDIPlusTextSource({
       name,
@@ -93,7 +83,6 @@ async function SubAlert(name: string, data: DataStructure) {
     alignment: Alignment.Center,
   });
   await wait(data.cumulative * delay);
-
   let Name = await mainScene.createItem(name, {
     source: new GDIPlusTextSource({
       name,
@@ -124,9 +113,9 @@ async function SubAlert(name: string, data: DataStructure) {
       },
     }),
   });
+  setTimeout(() => {});
   setTimeout(() => {
     unregisterPhysicsItem(Name);
-    Name.remove();
   }, 30000 * data.cumulative);
 
   //IF ELSE TREE BELOW FOR EACH MONTH SETUP

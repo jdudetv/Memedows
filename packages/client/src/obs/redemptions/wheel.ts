@@ -28,7 +28,7 @@ export interface WheelOption {
 
 export async function randomWheelItems(data: any) {
   let WheelOptions = [
-    { name: "HornyJail", chance: 10000 },
+    { name: "HornyJail", chance: 50000 },
     { name: "Emote Only", chance: 1000 },
     { name: "Chaos", chance: 1000 },
     { name: "CrabRave", chance: 1000 },
@@ -40,8 +40,8 @@ export async function randomWheelItems(data: any) {
     { name: "1000 xp", chance: 1000 },
     { name: "Timeout someone else", chance: 1000 },
     { name: "FIRESALE", chance: 1000 },
-    { name: "Yeet", chance: 10000 },
-    // { name: "OG CumZone", chance: 5000 },
+    { name: "Yeet", chance: 50000 },
+    { name: "OG CumZone", chance: 5000 },
     { name: "NUKE", chance: 1 },
   ];
 
